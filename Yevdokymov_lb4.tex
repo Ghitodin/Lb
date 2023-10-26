@@ -1,0 +1,357 @@
+% Вказуємо клас документа, розмір шрифту та формат паперу
+\documentclass[14pt,a4paper,twoside]{article}
+
+% --- Шрифти ---
+\usepackage{lmodern} % Сучасні шрифти для кращої сумісності та масштабування
+
+% --- Кодування та Локалізація ---
+\usepackage[utf8]{inputenc} % Встановлює кодування вводу як UTF-8
+\usepackage[T2A]{fontenc}   % Встановлює кодування шрифту для кирилиці
+\usepackage[english,ukrainian]{babel} % Підтримка англійської та української мов
+
+% --- Графіка ---
+\usepackage{graphicx} % Для вставки графічних зображень (jpg, png, etc.)
+
+% --- Геометрія сторінки ---
+\usepackage[left=25.4mm, right=12.7mm, top=20mm, bottom=20mm]{geometry} % Встановлює поля документа
+
+% --- Відступи та форматування тексту ---
+\usepackage{indentfirst} % Додає відступ для першого абзацу після заголовка розділу
+
+% --- Математичні пакети ---
+\usepackage{amsmath}  % Додаткові математичні символи та формули
+\usepackage{amsfonts} % Додаткові математичні шрифти (наприклад, \mathbb)
+\usepackage{amssymb}  % Додаткові математичні символи (наприклад, \nexists, \varnothing)
+
+% --- Таблиці ---
+\usepackage{array}    % Для додаткових опцій форматування таблиць
+
+% --- Форматування заголовків ---
+\usepackage{titlesec} % Для кастомізації формату заголовків (розділів, підрозділів, тощо)
+
+% --- Заголовки та підвали сторінок ---
+\usepackage{fancyhdr} % Для кастомізації заголовків та підвалів сторінок
+
+% --- Міжрядкові інтервали ---
+\usepackage{setspace} % Для керування міжрядковими інтервалами
+
+% --- Додаткові утиліти (Lorem Ipsum, посилання на розділи, тощо) ---
+\usepackage{lipsum}   % Для генерації "заповнювача тексту" (Lorem Ipsum)
+\usepackage{nameref}  % Для створення посилань на назви розділів у тексті
+
+% --- Гіперпосилання (зазвичай підключається останнім) ---
+\usepackage{hyperref} % Для створення активних гіперпосилань у PDF
+
+% --- Налаштування формату заголовків та інших елементів ---
+\titleformat{\section}[block]{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}[block]{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[block]{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+% --- Відступи після заголовків ---
+\titlespacing*{\paragraph}{0pt}{\baselineskip}{1em}
+\titlespacing*{\subparagraph}{0pt}{\baselineskip}{1em}
+
+% --- Налаштування сторінок ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO]{\thepage}
+\fancyhead[LE]{\thepage}
+\fancyhead[CE,CO]{}
+\fancypagestyle{plain}{
+	\fancyhf{}
+}
+
+\begin{document}
+	\onehalfspacing  % Встановлення інтервалу 1.5
+	\title{Лабораторна робота: Створення наукової статті в LaTeX з клікабельними посиланнями}
+	\author{Dr. Sergii Burian \and Vyacheslav Yevdokimov}
+	\date{\today}
+	\maketitle
+	\thispagestyle{plain}
+	
+	\newpage  % Перехід на нову сторінку
+	\thispagestyle{empty}  % Зробити цю сторінку порожньою (без номерів сторінок та заголовків)
+	\mbox{}  % Додати порожній "блок", щоб LaTeX вважав сторінку "зайнятою"
+	
+	\newpage  % Перехід на нову сторінку
+	
+	\tableofcontents  % Генерація змісту
+	
+	\newpage  % Перехід на нову сторінку
+	
+	\section*{Анотація}
+	Цей документ служить як приклад та завдання для студентів, які вивчають LaTeX. Завдання полягає в створенні наукової статті з використанням різних типів форматування, вставки математичних формул, створення таблиць, списків та клікабельних посилань. Детальні приклади представлені у відповідних розділах цього документа.
+	
+	\newpage
+	
+	\section{Вступ}
+	Команда \texttt{\textbackslash lipsum[1]} використовується для генерації "заповнювача тексту" в LaTeX документах. Це корисно, коли вам потрібно швидко додати текст в документ для демонстрації форматування, структури або інших аспектів документа, не звертаючи уваги на зміст.
+	
+	Пакет lipsum надає доступ до рядків "Lorem Ipsum", які часто використовуються як заповнювач тексту в різних дизайнерських і видавничих задачах. Команда \texttt{\textbackslash lipsum[1]} вставляє перший абзац "Lorem Ipsum" тексту. Ви також можете вказати діапазон абзаців, наприклад, \texttt{\textbackslash lipsum[1-5]} вставить перші п'ять абзаців. Наступний абзац є прикладом застосування  \texttt{\textbackslash lipsum[5]}.
+	
+	\lipsum[4]
+	
+	\section{Пояснення елементів преамбули}
+	
+	\begin{itemize}
+		\item \textbf{\textbackslash documentclass[14pt,a4paper,twoside]\{article\}}: Вказує клас документа (article), глобальний розмір шрифту (14pt), розмір паперу (a4paper), і двосторонню друковану версію.
+		
+		\item \textbf{\textbackslash usepackage\{lmodern\}}: Сучасні шрифти для кращої сумісності та масштабування.
+		
+		\item \textbf{\textbackslash usepackage[utf8]\{inputenc\}}: Встановлює кодування вводу як UTF-8.
+		
+		\item \textbf{\textbackslash usepackage[T2A]\{fontenc\}}: Встановлює кодування шрифту для кирилиці.
+		
+		\item \textbf{\textbackslash usepackage[english,ukrainian]\{babel\}}: Підтримка англійської та української мов.
+		
+		\item \textbf{\textbackslash usepackage\{graphicx\}}: Для вставки графічних зображень.
+		
+		\item \textbf{\textbackslash usepackage[left=25.4mm, right=12.7mm, top=20mm, bottom=20mm]\{geometry\}}: Встановлює поля документа.
+		
+		\item \textbf{\textbackslash usepackage\{indentfirst\}}: Додає відступ для першого абзацу після заголовка розділу.
+		
+		\item \textbf{\textbackslash usepackage\{amsmath, amsfonts, amssymb\}}: Додаткові математичні символи, шрифти та формули.
+		
+		\item \textbf{\textbackslash usepackage\{array\}}: Для додаткових опцій форматування таблиць.
+		
+		\item \textbf{\textbackslash numberwithin\{equation\}\{section\}}: Додає номер розділу до номерів формул.
+		
+		\item \textbf{\textbackslash numberwithin\{table\}\{section\}}: Додає номер розділу до номерів таблиць.
+		
+		\item \textbf{\textbackslash usepackage\{titlesec\}}: Для кастомізації формату заголовків.
+		
+		\item \textbf{\textbackslash usepackage\{fancyhdr\}}: Для кастомізації заголовків та підвалів сторінок.
+		
+		\item \textbf{\textbackslash usepackage\{setspace\}}: Для керування міжрядковими інтервалами.
+		
+		\item \textbf{\textbackslash usepackage\{lipsum\}}: Для генерації "заповнювача тексту" (Lorem Ipsum).
+		
+		\item \textbf{\textbackslash usepackage\{nameref\}}: Для створення посилань на назви розділів у тексті.
+		
+		\item \textbf{\textbackslash usepackage\{hyperref\}}: Для створення активних гіперпосилань у PDF.
+		
+		\item \textbf{\textbackslash fancyhead[RO]\{\textbackslash thepage\}}: Нумерація для непарних сторінок справа.
+		
+		\item \textbf{\textbackslash fancyhead[LE]\{\textbackslash thepage\}}: Нумерація для парних сторінок зліва.
+		
+		\item \textbf{\textbackslash titlespacing*\{\textbackslash paragraph\}\{...\}}: Відступи після заголовків параграфів.
+	\end{itemize}
+	
+	
+	\subsection{Додаткові вимоги (Оцінюється в 4 бали)}
+	\begin{itemize}
+		\item Використовуйте двосторонній друк (\texttt{twoside}) та формат паперу A4.
+		\item Використати титульну сторінку та додати порожню сторінку після титульної і теж її не нумерувати.
+		\item Встановіть поля документа: ліве – 2.54 см, праве – 1.27 см, верхнє і нижнє – 2.0 см.
+		\item Використовуйте кастомізовані заголовки та колонтитули для сторінок: нумерація для непарних сторінок справа, нумерація для парних сторінок зліва, порожньо для центральної частини верхнього колонтитула на всіх сторінках
+		\item Всі математичні формули та таблиці повинні бути правильно вирівняні та позначені.
+		\item Всі посилання на формули, таблиці та інші елементи мають бути клікабельними. Для цього використовуйте пакет \texttt{hyperref}.
+	\end{itemize}
+	
+	\subsection{Використання формул (Оцінюється в 3 бали)}
+	
+	
+	\subsubsection{Більш детальна інструкція до використання формул}
+	
+	У підрозділі додайте приклади простих та складних математичних формул. Використовуйте різні математичні оточення (\texttt{equation}, \texttt{multline}, \texttt{align} тощо). Позначте кожну формулу за допомогою \texttt{\textbackslash label} і вставте посилання на неї в тексті за допомогою \texttt{\textbackslash ref}.
+	
+	У наступному підрозділі наведено приклад того, як Ви повинні продемонструвати свої навички використання LaTeX при записі формул в рядку, окремим рядком та записавши формулу в кілька рядків. Для цього кожному з Вас дається індивідуальне завдання, яке наводиться в таблиці~\ref{tab:taylor_series} у  \hyperref[sec:appendix1]{Додатку А}.
+	
+	Проробіть усі аналогічні дії, але зі своїм завданням!
+	
+	\subsubsection{Написання складних формул}
+	
+	\paragraph{Математичні формули.}
+	
+	Розглянемо функцію  \( \cot(x)\) та її розклад у ряд Маклорена. Для функції \( \cot(x)\), її розклад у ряд Тейлора можна записати наступним чином:
+	\begin{equation} \label{eq:cot_general}
+		 \cot(x) = \sum_{n=1}^{\infty} \frac{(-1)^{n+1} x^{2n-1}}{2n-1} 
+	\end{equation}
+	Позначимо \( n \)-ий член цього ряду як \( q_n \):
+	\begin{equation} \label{eq:q_sum_n}
+		q_n = \frac{(-1)^{n+1} x^{2n-1}}{2n-1}
+	\end{equation}
+	
+	\paragraph{Складні математичні формули.}
+	
+	Тепер розглянемо суму ряду \( \cot(x)  = q_0 + q_1 + q_2 + \ldots\) в контексті виразу \eqref{eq:q_sum_n}. Для цього можна використати команди \text{align} та \text{multline}:
+	\begin{align} \label{eq:cot_sum}
+		& \cot(x) = q_0 + q_1 + q_2 + \ldots  = \\ 
+		&= {x^{-1}} - \frac{1}{3}x - \frac{1}{45}x^3 - \frac{2}{945}x^5 - \ldots \nonumber
+	\end{align}
+	\begin{multline} \label{eq:sum_series_10_terms}
+		\cot(x) ={x^{-1}} - \frac{1}{3}x - \frac{1}{45}x^3 - \frac{2}{945}x^5 -  \\
+		- \frac{1}{4725}x^7 - \frac{2}{93555}x^9 - \frac{1382}{638512875}x^{11} - \frac{4}{18243225}x^{13} - \\
+	    - \frac{3617}{162820783125}x^{15} - \frac{87734}{38979295480125}x^{17} - \ldots
+	\end{multline}
+	
+	Якщо у нас є відомий \( n \)-ий член ряду \( q_n \), то ми можемо знайти \( (n+1) \)-ий член \( q_{n+1} \) через нього. Для цього нам потрібно знайти рекурентний множник \( R \): 
+	\begin{equation} \label{eq:R_def}
+		R = \frac{q_{n+1}}{q_n}.
+	\end{equation}
+	
+	Вираз для \( q_{n+1} \) можна записати наступним чином:
+	\begin{equation} \label{eq:qn1_def}
+		q_{n+1} = \frac{(-1)^{n+2} x^{2n+1}}{2n+1}
+	\end{equation}
+	
+	Підставляючи \eqref{eq:qn1_def} та \eqref{eq:q_sum_n} у \eqref{eq:R_def}, отримуємо:
+	\begin{equation} \label{eq:R_simplified}
+		R = -\frac{x^{2n+1} (2n-1)}{x^{2n-1} (2n+1)}
+	\end{equation}
+	
+	Тепер, знаючи \( R \) і \( q_n \), можна знайти \( q_{n+1} \) як \( q_{n+1} = R \cdot q_n \).
+	
+	Для детального розгляду, дивіться формули \eqref{eq:cot_general}, \eqref{eq:q_sum_n}, \eqref{eq:R_def}, \eqref{eq:qn1_def}, і \eqref{eq:R_simplified}.
+	
+	
+	% Таблиця
+	\subsection{Використання таблиць (Оцінюється в 3 бали)}
+	
+	\subsubsection{Більш детальна інструкція до використання таблиць}
+	
+	Створіть таблицю з декількома рядками та стовпцями. Використовуйте \texttt{\textbackslash caption} для додавання заголовка таблиці та \texttt{\textbackslash label} для можливості посилання на неї. Вставте посилання на таблицю в тексті за допомогою \texttt{\textbackslash ref}
+	
+	Ось приклад таблиці:
+	
+	
+	\begin{table}[h]
+		\centering
+		\caption{Таблиця істинності для 20-го завдання} \label{sec:tabl_6}
+		\label{tab:truth_table_20}
+		\begin{tabular}{|c|c||c|c||c|}
+			\hline
+			\( A \) & \( B \) & \( \lnot A \lor B \) & \( \lnot B \) & \( \lnot B \land (\lnot A \lor B)  \) \\
+			\hline
+			\hline
+			1 & 1 & 1 & 0 & 0 \\
+			\hline
+			1 & 0 & 0 & 1 & 0 \\
+			\hline
+			0 & 1 & 1 & 0 & 0\\
+			\hline
+			0 & 0 & 1 & 1 & 1 \\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	
+	
+	Кожен знайде своє завдання для побудови таблиці істинності в таблиці~\ref{tab:individual_tasks} з індивідуальними завданнями у \hyperref[sec:appendix2]{Додатку Б}. Так, у мене це завдання під №6 наведено у  \hyperref[sec:tabl_6] {таблиці 1}.
+	
+	
+	\section{Висновки}
+	
+	У висновку коротко опишіть, що було найскладніше для виконання в цій лабораторній роботі. 
+	Також порекомендуйте книгу з LaTeX, яку Ви читали, або про яку чули і зробіть на неї посилання в списку літератури за зразком, що нижче.
+	
+	Найскладніше для виконання в цій лабораторній роботі було зрозуміти, які символи є обовязковими для використання, а які можна не писати. Також незрозумілим залишається: чому використання апострофу з української розкладки у слові видає помилку, хоча підтримка українськї мови є (тоді як з використанням апострофу з англійської розкладки проблем не виникає), також незрозуміло як при підклченоу пакеті \textbf{lmodern} не працює команда \textit{\textbackslash textbf та \textbackslash textit} навіть на англійських шрифтах.
+	
+	Для тих, хто тільки починає вивчати LaTeX, книга \textit{"LaTeX for beginners"} автора Hare Jean є відмінним вступом в цю тему~\cite{latexbegin}. Окрім того опис основних команд можна знайти на сайті \href{https://www.overleaf.com/learn}{overleaf.com}.
+	
+	Якщо ви вже маєте певний досвід роботи з LaTeX, але хочете поглибити свої знання, рекомендую звернутися до книги \textit{"Intermediate Latex"}~\cite{latexintermid}, яка є вичерпним джерелом інформації з цієї теми.
+	
+	Для вивчення специфічних аспектів LaTeX, таких як математичне форматування або створення графіки, книга \textit{"The LaTeX Companion"} може надати цінні поради та приклади~\cite{latexguide}.
+	
+	\newpage
+	
+	\begin{thebibliography}{9}
+		\bibitem{latexbegin}	Hare J. LaTeX for beginners. 2023
+		\bibitem{latexintermid} 	Hare J. Intermediate Latex. 20231
+		\bibitem{latexguide}  Mittelbach F, Fischer U. 
+		\textit{The LaTeX Companion.}  
+		Addison-Wesley Professional; 2023.
+
+	\end{thebibliography}
+	\newpage
+	\appendix
+	
+	\section{Перший додаток}\label{sec:appendix1}
+	\begin{table}[h!]
+		\centering
+		\caption{Варіанти індивідуальних завдань для використання формул}
+		\label{tab:taylor_series}
+		\begin{tabular}{|c|c||c||c|}
+			\hline
+			№ & Функція & Розклад в ряд Тейлора & Інтервал збіжності \\
+			\hline
+			\hline
+			1 & \( \ln(1+x) \) & \( \displaystyle\sum_{n=1}^{\infty} \frac{(-1)^{n+1} x^n}{n} \) & \( -1 < x \leq 1 \) \\
+			\hline
+			2 & \( \sqrt{1+x} \) & \( \displaystyle\sum_{n=0}^{\infty} \frac{(-1)^n (2n)! x^n}{2^{2n} (n!)^2 (2n+1)} \) & \( |x| \leq 1 \) \\
+			\hline
+			3 & \( \frac{1}{\sqrt{1+x}} \) & \( \displaystyle\sum_{n=0}^{\infty} \frac{(-1)^n (2n)! x^n}{2^{2n} (n!)^2 (2n+1)} \) & \( -1 < x \leq 1 \) \\
+			\hline
+			4 & \( \cos(x) \) & \( \displaystyle\sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{(2n)!} \) & \( x \in \mathbb{C} \) \\
+			\hline
+			5 & \( \tan(x) \) & \( \displaystyle\sum_{n=1}^{\infty} \frac{(-1)^{n+1} x^{2n-1}}{(2n-1)} \) & \( |x| < \frac{\pi}{2} \) \\
+			\hline
+			6 & \( \cot(x) \) & \( \displaystyle\sum_{n=1}^{\infty} \frac{(-1)^{n+1} x^{2n-1}}{(2n-1)} \) & \( 0 < |x| < \pi \) \\
+			\hline
+			7 & \( \sec(x) \) & \( \displaystyle\sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{(2n)!} \) & \( |x| < \frac{\pi}{2} \) \\
+			\hline
+			8 & \( \csc(x) \) & \( \displaystyle\sum_{n=1}^{\infty} \frac{(-1)^{n+1} x^{2n-1}}{(2n-1)!} \) & \( 0 < |x| < \pi \) \\
+			\hline
+			9 & \( \arcsin(x) \) & \( \displaystyle\sum_{n=0}^{\infty} \frac{(2n)! x^{2n+1}}{2^{2n} (n!)^2 (2n+1)} \) & \( |x| \leq 1 \) \\
+			\hline
+			10 & \( \arctan(x) \) & \( \displaystyle\sum_{n=1}^{\infty} \frac{(-1)^{n+1} x^{2n-1}}{(2n-1)} \) & \( |x| \leq 1 \) \\
+			\hline
+			11 & \( \sinh(x) \) & \( \displaystyle\sum_{n=0}^{\infty} \frac{x^{2n+1}}{(2n+1)!} \) & \( x \in \mathbb{C} \) \\
+			\hline
+			12 & \( \cosh(x) \) & \( \displaystyle\sum_{n=0}^{\infty} \frac{x^{2n}}{(2n)!} \) & \( x \in \mathbb{C} \) \\
+			\hline
+			13 & \( \tanh(x) \) & \( \displaystyle\sum_{n=1}^{\infty} \frac{x^{2n-1}}{(2n-1)} \) & \( |x| < \frac{\pi}{2} \) \\
+			\hline
+			14 & \( \coth(x) \) & \( \displaystyle\sum_{n=1}^{\infty} \frac{x^{2n-1}}{(2n-1)} \) & \( 0 < |x| < \pi \) \\
+			\hline
+			15 & \( \text{sech}(x) \) & \( \displaystyle\sum_{n=0}^{\infty} \frac{x^{2n}}{(2n)!} \) & \( |x| < \frac{\pi}{2} \) \\
+			\hline
+			16 & \( \text{csch}(x) \) & \( \displaystyle\sum_{n=1}^{\infty} \frac{x^{2n-1}}{(2n-1)!} \) & \( 0 < |x| < \pi \) \\
+			\hline
+			17 & \( \text{arsinh}(x) \) & \( \displaystyle\sum_{n=0}^{\infty} \frac{(2n)! x^{2n+1}}{2^{2n} (n!)^2 (2n+1)} \) & \( |x| \leq 1 \) \\
+			\hline
+			18 & \( \text{artanh}(x) \) & \( \displaystyle\sum_{n=1}^{\infty} \frac{x^{2n-1}}{(2n-1)} \) & \( |x| < 1 \) \\
+			\hline
+			19 & \( \text{arsinh}(x) \) & \( \displaystyle\sum_{n=0}^{\infty} \frac{(2n)! x^{2n+1}}{2^{2n} (n!)^2 (2n+1)} \) & \( |x| \leq 1 \) \\
+			\hline
+			20 & \( \sin(x) \) & \( \displaystyle\sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!} \) & \( x \in \mathbb{C} \) \\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	\newpage	
+	\section{Другий додаток}\label{sec:appendix2}
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Варіанти індивідуальних завдань для створення таблиці}
+		\label{tab:individual_tasks}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			№ варіанта & Логічний вираз & № варіанта & Логічний вираз \\
+			\hline
+			\hline
+			1 & \( \lnot (A \land \lnot B) \lor B \) & 11 & \( \lnot (A \lor \lnot B) \lor \lnot B \land A \) \\
+			\hline
+			2 & \( A \land \lnot B \land \lnot (A \lor B) \) & 12 & \( (A \land B) \lor (\lnot A \land \lnot B) \) \\
+			\hline
+			3 & \( \lnot B \lor (A \land \lnot B) \) & 13 & \( \lnot A \lor B \lor (\lnot A \land B) \) \\
+			\hline
+			4 & \( \lnot A \land B \lor \lnot A \) & 14 & \( A \land \lnot B \land \lnot (A \lor B) \) \\
+			\hline
+			5 & \( \lnot (A \land B) \lor (B \lor \lnot A) \) & 15 & \( \lnot B \lor (A \land \lnot B) \) \\
+			\hline
+			6 & \( \lnot B \land (\lnot A \lor B) \) & 16 & \( \lnot (A \land B) \lor A \land \lnot B \) \\
+			\hline
+			7 & \( A \lor \lnot (B \lor A) \land A \) & 17 & \( A \land (\lnot B \lor B) \) \\
+			\hline
+			8 & \( \lnot B \land (A \lor B) \) & 18 & \( A \lor \lnot B \land \lnot A \) \\
+			\hline
+			9 & \( \lnot (A \lor \lnot B) \lor \lnot B \land A \) & 19 & \( \lnot (A \lor \lnot B) \land B \) \\
+			\hline
+			10 & \( (A \land B) \lor (\lnot A \land \lnot B) \) & 20 & \( A \land B \lor \lnot A \) \\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+\end{document}
